@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: openmap
+  namespace: openmap
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`openmap.akshi.gov.al`) 
+    kind: Rule
+    services:
+    - name: openmap
+      port: 80

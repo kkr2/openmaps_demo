@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: openmap-cert
+  namespace: openmap
+spec:
+  commonName: openmap.akshi.gov.al
+  secretName: openmap-cert-production
+  dnsNames:
+    - openmap.akshi.gov.al
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  

@@ -1,0 +1,23 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: openmap-ingress-https
+  namespace: openmap
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`openmap.akshi.gov.al`) 
+    kind: Rule
+    services:
+    - name: hasura
+      port: 8080
+      # middlewares:
+      # - name: redirect-http
+  tls:
+    # certResolver: letsencrypt-production
+    secretName: openmap-cert-production        # [10]
+    dnsChallenge:
+      provider: cloudflare
+    domains:                        # [15]
+    - main: openmap.akshi.gov.al
